@@ -10,8 +10,8 @@
  */
 package com.delta.auth.Service;
 
-import com.delta.auth.dto.TweiUser;
-import com.delta.common.utils.ServerResponse;
+import com.delta.auth.dto.TweiAuth;
+
 
 /**
  * 〈一句话功能简述〉<br>
@@ -21,12 +21,6 @@ import com.delta.common.utils.ServerResponse;
  * @create 4/6 0006
  * @since 1.0.0
  */
-public interface UserService extends BaseService<TweiUser> {
-    /**
-     * login
-     *
-     * @param user
-     * @return
-     */
-    public ServerResponse<TweiUser> login(TweiUser user);
+public interface AuthService extends BaseService<TweiAuth> {
+
 }

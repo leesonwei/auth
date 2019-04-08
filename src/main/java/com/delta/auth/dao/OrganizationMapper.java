@@ -1,6 +1,7 @@
 package com.delta.auth.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.delta.auth.dto.TweiOrganization;
 import com.delta.auth.dto.TweiUser;
 import org.springframework.stereotype.Repository;
 
@@ -11,13 +12,7 @@ import org.springframework.stereotype.Repository;
  * @Author LIZONG.WEI
  */
 @Repository
-public interface UserMapper extends BaseMapper<TweiUser> {
+public interface OrganizationMapper extends BaseMapper<TweiOrganization> {
 
-    /**
-     * get total user count
-     *
-     * @return
-     */
-    int listCount();
 
 }

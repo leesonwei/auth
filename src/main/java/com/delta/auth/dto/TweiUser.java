@@ -15,10 +15,12 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * 〈一句话功能简述〉<br> 
+ * 〈一句话功能简述〉<br>
  * 〈〉
  *
  * @author anywhere
@@ -28,12 +30,25 @@ import java.io.Serializable;
 
 @Data
 @TableName("twei_user")
-public class User implements Serializable {
-    @TableId(type = IdType.AUTO)
+public class TweiUser implements Serializable {
+
+    @TableId(type = IdType.UUID)
     private String userid;
 
     private String userName;
 
     @JsonIgnore
     private String password;
+
+    private String email;
+
+    private Date createAt;
+
+    private Date lastLoginAt;
+
+    private Date updateAt;
+
+    private String organizationId;
+
+    private Integer dataVersion;
 }

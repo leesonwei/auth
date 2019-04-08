@@ -1,6 +1,6 @@
 package com.delta.auth.Service;
 
-import com.delta.auth.common.ServerResponse;
+import com.delta.common.utils.ServerResponse;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import java.util.List;
 public interface BaseService<T> {
     /**
      * 新增
+     *
      * @param t
      * @return
      */
@@ -20,6 +21,7 @@ public interface BaseService<T> {
 
     /**
      * 刪除
+     *
      * @param t
      * @return
      */
@@ -27,13 +29,16 @@ public interface BaseService<T> {
 
     /**
      * 更新
+     *
      * @param t
      * @return
      */
     ServerResponse<T> updateOne(T t);
 
+
     /**
      * 查找單個
+     *
      * @param t
      * @return
      */
@@ -41,6 +46,7 @@ public interface BaseService<T> {
 
     /**
      * 查找list對象
+     *
      * @return
      */
     List<T> selectList();
