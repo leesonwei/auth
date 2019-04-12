@@ -1,5 +1,6 @@
 package com.delta.auth.dto;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class TweiRole implements Serializable {
 
     private Date createAt;
 
-    private Date createBy;
+    private String createBy;
 
     private Integer roleLevel;
 
@@ -32,4 +33,7 @@ public class TweiRole implements Serializable {
     private String roleDesc;
 
     private Integer dataVersion;
+
+    @TableField(exist = false)
+    private boolean selected;
 }

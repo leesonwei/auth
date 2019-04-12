@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.delta.auth.dao.AuthMapper">
-
-
+<select id="getOweAuths" resultType="com.delta.auth.dto.TweiAuth">
+    select
+    tb.auth_id as authId,
+    tb.auth_name as authName,
+    tb.auth_url as authUrl,
+    tb.auth_type as authType,
+    tb.auth_parent_id as authParentId,
+    tb.data_version as dataVersion
+    from twei_auth tb
+    left join twei_role_auth ta on tb.auth_id = ta.auth_id
+    where ta.role_id = #{roleId}
+</select>
 </mapper>

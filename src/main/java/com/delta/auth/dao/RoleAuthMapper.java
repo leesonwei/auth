@@ -1,7 +1,6 @@
 package com.delta.auth.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.delta.auth.dto.TweiRole;
 import com.delta.auth.dto.TweiRoleAuth;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +13,7 @@ import java.util.List;
  * @Author LIZONG.WEI
  */
 @Repository
-public interface RoleAuthMapper extends BaseMapper<TweiRole> {
+public interface RoleAuthMapper extends BaseMapper<TweiRoleAuth> {
     /**
      * 批量新增
      *

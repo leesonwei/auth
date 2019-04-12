@@ -11,7 +11,10 @@
 package com.delta.auth.Service;
 
 import com.delta.auth.dto.TweiRole;
-import com.delta.auth.dto.TweiUser;
+import com.delta.auth.dto.TweiRoleAuth;
+import com.delta.common.utils.ServerResponse;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -22,5 +25,9 @@ import com.delta.auth.dto.TweiUser;
  * @since 1.0.0
  */
 public interface RoleService extends BaseService<TweiRole> {
+    public ServerResponse<TweiRoleAuth> setAuths(List<TweiRoleAuth> roleAuths);
 
+    public List<TweiRole> getRoles(String userid);
+
+    public List<TweiRole> oweRoles(String userid);
 }

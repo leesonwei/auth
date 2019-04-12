@@ -2,6 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.delta.auth.dao.RoleMapper">
+<select id="getRoles" resultType="com.delta.auth.dto.TweiRole">
+    select tc.role_id as roleId,
+     tc.role_level as roleLevel,
+     tc.role_desc as roleDesc,
+     tc.role_parent_id as roleParentId,
+     tc.role_name as roleName,
+     tc.create_at as createAt,
+     tc.create_by as createBy,
+     tc.data_version as dataVersion
+     from twei_role tc where tc.role_level >
+    (select min(tb.role_level) from twei_role tb where tb.role_id in
+    (select ta.role_id from twei_user_role ta where ta.userid = #{userid}))
+</select>
 
+    <select id="oweRoles" resultType="com.delta.auth.dto.TweiRole">
+    select tc.role_id as roleId,
+     tc.role_level as roleLevel,
+     tc.role_desc as roleDesc,
+     tc.role_parent_id as roleParentId,
+     tc.role_name as roleName,
+     tc.create_at as createAt,
+     tc.create_by as createBy,
+     tc.data_version as dataVersion
+     from twei_role tc where tc.role_id in
+    (select ta.role_id from twei_user_role ta where ta.userid = #{userid})
+</select>
+
+    <select id="getMaxRoles" resultType="com.delta.auth.dto.TweiRole">
+    select tc.role_id as roleId,
+     tc.role_level as roleLevel,
+     tc.role_desc as roleDesc,
+     tc.role_parent_id as roleParentId,
+     tc.role_name as roleName,
+     tc.create_at as createAt,
+     tc.create_by as createBy,
+     tc.data_version as dataVersion
+     from twei_role tc
+     where tc.role_level =
+     (select min(td.role_level) from twei_role td where td.role_id in
+    (select ta.role_id from twei_user_role ta where ta.userid = #{userid}))
+    and tc.role_id =
+    (select ta.role_id from twei_user_role ta where ta.userid = #{userid})
+</select>
 
 </mapper>

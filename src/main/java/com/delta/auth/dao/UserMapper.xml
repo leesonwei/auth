@@ -3,8 +3,40 @@
 
 <mapper namespace="com.delta.auth.dao.UserMapper">
 
-    <select id="listCount" resultType="integer">
-        select count(*) from twei_user
+
+    <select id="selectListByRole" resultType="com.delta.auth.dto.TweiUser">
+      select te.userid as userid,
+      te.USER_NAME as userName,
+      te.PASSWORD as password,
+      te.email as email,
+      te.create_at as createAt,
+      te.last_login_at as lastLoginAt,
+      te.update_at as upadteAt,
+      te.data_version as dataVersion
+      from twei_user te where te.userid not in (select userid from twei_user_role)
+      union
+    select tf.userid as userid,
+      tf.USER_NAME as userName,
+      tf.PASSWORD as password,
+      tf.email as email,
+      tf.create_at as createAt,
+      tf.last_login_at as lastLoginAt,
+      tf.update_at as upadteAt,
+      tf.data_version as dataVersion
+      from twei_user tf where
+      tf.userid = #{userid}
+      UNION
+      select te.userid as userid,
+      te.USER_NAME as userName,
+      te.PASSWORD as password,
+      te.email as email,
+      te.create_at as createAt,
+      te.last_login_at as lastLoginAt,
+      te.update_at as upadteAt,
+      te.data_version as dataVersion
+      from twei_user te where te.userid in (select distinct td.userid from twei_user_role td where td.role_id in(select tc.role_id from twei_role tc where tc.role_level > (select min(tb.role_level) from twei_role tb where tb.role_id in
+      (select ta.role_id from twei_user_role ta where ta.userid = #{userid}))))
+
     </select>
 
 </mapper>

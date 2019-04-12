@@ -2,8 +2,9 @@ package com.delta.auth.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.delta.auth.dto.TweiRole;
-import com.delta.auth.dto.TweiUser;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @Classname UserMapper
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RoleMapper extends BaseMapper<TweiRole> {
+    List<TweiRole> getRoles(String userid);
 
+    List<TweiRole> oweRoles(String userid);
 
+    TweiRole getMaxRoles(String userid);
 }

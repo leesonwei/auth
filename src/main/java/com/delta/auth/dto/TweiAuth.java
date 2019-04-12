@@ -1,5 +1,6 @@
 package com.delta.auth.dto;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
@@ -33,4 +34,9 @@ public class TweiAuth implements Serializable {
     private Date createAt;
 
     private Integer dataVersion;
+
+    private String authUrl;
+
+    @TableField(exist = false)
+    private boolean hasCheck;
 }

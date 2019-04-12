@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.delta.auth.dto.TweiUser;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @Classname UserMapper
  * @Description
@@ -13,11 +15,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper extends BaseMapper<TweiUser> {
 
-    /**
-     * get total user count
-     *
-     * @return
-     */
-    int listCount();
+    List<TweiUser> selectListByRole(String userid);
 
 }

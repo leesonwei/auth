@@ -12,13 +12,12 @@ package com.delta.auth.Service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.delta.auth.Service.AuthService;
-import com.delta.auth.Service.UserService;
 import com.delta.auth.dao.AuthMapper;
-import com.delta.auth.dao.UserMapper;
 import com.delta.auth.dto.TweiAuth;
-import com.delta.auth.dto.TweiUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -41,4 +40,8 @@ public class AuthServiceImpl extends BaseServiceImpl<AuthMapper, TweiAuth> imple
         return null;
     }
 
+    @Override
+    public List<TweiAuth> getOweAuths(String roleId) {
+        return dao.getOweAuths(roleId);
+    }
 }

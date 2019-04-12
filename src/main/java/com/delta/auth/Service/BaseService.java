@@ -2,6 +2,7 @@ package com.delta.auth.Service;
 
 import com.delta.common.utils.ServerResponse;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface BaseService<T> {
      * @param t
      * @return
      */
-    ServerResponse<T> insertOne(T t);
+    ServerResponse<T> insertOne(T t, HttpServletRequest request);
 
     /**
      * 刪除
@@ -25,7 +26,7 @@ public interface BaseService<T> {
      * @param t
      * @return
      */
-    ServerResponse<T> deleteOne(T t);
+    ServerResponse<T> deleteOne(T t, HttpServletRequest request);
 
     /**
      * 更新
@@ -33,7 +34,7 @@ public interface BaseService<T> {
      * @param t
      * @return
      */
-    ServerResponse<T> updateOne(T t);
+    ServerResponse<T> updateOne(T t, HttpServletRequest request);
 
 
     /**

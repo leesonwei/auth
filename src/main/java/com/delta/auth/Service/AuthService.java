@@ -12,6 +12,8 @@ package com.delta.auth.Service;
 
 import com.delta.auth.dto.TweiAuth;
 
+import java.util.List;
+
 
 /**
  * 〈一句话功能简述〉<br>
@@ -22,5 +24,5 @@ import com.delta.auth.dto.TweiAuth;
  * @since 1.0.0
  */
 public interface AuthService extends BaseService<TweiAuth> {
-
+    List<TweiAuth> getOweAuths(String roleId);
 }

@@ -2,7 +2,6 @@ package com.delta.auth.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.delta.auth.dto.TweiAuth;
-import com.delta.auth.dto.TweiUser;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,5 +14,5 @@ import java.util.List;
  */
 @Repository
 public interface AuthMapper extends BaseMapper<TweiAuth> {
-
+    List<TweiAuth> getOweAuths(String roleId);
 }

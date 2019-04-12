@@ -10,10 +10,10 @@
  */
 package com.delta.auth.dto;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -37,7 +37,6 @@ public class TweiUser implements Serializable {
 
     private String userName;
 
-    @JsonIgnore
     private String password;
 
     private String email;
@@ -51,4 +50,21 @@ public class TweiUser implements Serializable {
     private String organizationId;
 
     private Integer dataVersion;
+
+    @TableField(exist = false)
+    private TweiRole role;
+
+    @Override
+    public String toString() {
+        return "TweiUser{" +
+                "userid='" + userid + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", createAt=" + createAt +
+                ", lastLoginAt=" + lastLoginAt +
+                ", updateAt=" + updateAt +
+                ", organizationId='" + organizationId + '\'' +
+                ", dataVersion=" + dataVersion +
+                '}';
+    }
 }

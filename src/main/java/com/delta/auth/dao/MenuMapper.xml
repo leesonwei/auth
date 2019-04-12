@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delta.auth.dao.MenuMapper">
+
+    <select id="selectListVo" parameterType="map" resultType="com.delta.auth.dto.TweiMenuVo">
+        select distinct
+        ta.menu_id as menuId,
+        ta.menu_name as menuName,
+        ta.menu_parent_id as menuParentId,
+        ta.menu_icon as menuIcon,
+        ta.menu_level as menuLevel,
+        ta.create_by as createBy,
+        ta.create_at as createAt,
+        ta.auth_id as authId,
+        tb.menu_name as menuParentIdName,
+        tc.auth_url as authIdUrl,
+        ta.menu_order as menuOrder,
+        ta.data_version as dataVersion
+        from twei_menu ta
+        left join twei_menu tb on ta.menu_parent_id = tb.menu_id
+        left join twei_auth tc on ta.auth_id = tc.auth_id
+        where 1 = 1
+        Order by menuParentId asc,to_number(menuId) asc,menuOrder asc
+    </select>
+
+    <select id="selectUserMenu" parameterType="string" resultType="com.delta.auth.dto.TweiMenuVo">
+    select distinct
+        ta.menu_id as menuId,
+        ta.menu_name as menuName,
+        ta.menu_parent_id as menuParentId,
+        ta.menu_icon as menuIcon,
+        ta.menu_level as menuLevel,
+        ta.create_by as createBy,
+        ta.create_at as createAt,
+        ta.auth_id as authId,
+        tb.menu_name as menuParentIdName,
+        tc.auth_url as authIdUrl,
+        ta.menu_order as menuOrder,
+        ta.data_version as dataVersion
+        from twei_menu ta
+        left join twei_menu tb on ta.menu_parent_id = tb.menu_id
+        left join twei_auth tc on ta.auth_id = tc.auth_id
+        where 1 = 1 and ta.menu_id in
+    (select tc.menu_id from twei_menu tc where tc.auth_id in
+    (select tb.auth_id from twei_role_auth tb where tb.role_id in
+    (select ta.role_id from twei_user_role ta where ta.userid = #{userid})))
+    Order by menuParentId asc,to_number(menuId) asc,menuOrder asc
+    </select>
+</mapper>

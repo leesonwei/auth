@@ -2,11 +2,10 @@ package com.delta.auth.dto;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @Classname TweiUserRole
@@ -17,28 +16,12 @@ import java.util.Date;
 @Data
 @TableName("twei_user_role")
 public class TweiUserRole implements Serializable {
-    @TableId
+    @TableId( type= IdType.AUTO)
     private String urId;
 
     private String userid;
 
-    private String userName;
-
-    private String email;
-
-    private Date lastLoginAt;
-
-    private String organizationId;
-
     private String roleId;
-
-    private String roleName;
-
-    private Integer roleLevel;
-
-    private String roleParentId;
-
-    private String roleDesc;
 
     private Integer dataVersion;
 }

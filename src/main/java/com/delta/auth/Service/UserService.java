@@ -11,7 +11,10 @@
 package com.delta.auth.Service;
 
 import com.delta.auth.dto.TweiUser;
+import com.delta.auth.dto.TweiUserRole;
 import com.delta.common.utils.ServerResponse;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -29,4 +32,9 @@ public interface UserService extends BaseService<TweiUser> {
      * @return
      */
     public ServerResponse<TweiUser> login(TweiUser user);
+
+    public ServerResponse<TweiUserRole> setRoles(List<TweiUserRole> userRoles);
+
+    List<TweiUser> selectListByRole(String userid);
+
 }
