@@ -25,6 +25,19 @@
     </select>
 
     <select id="selectUserMenu" parameterType="string" resultType="com.delta.auth.dto.TweiMenuVo">
+    with tab(menu_id,menu_parent_id) as
+    (
+     select menu_id,menu_parent_id from twei_menu where menu_id in (
+     select tc.menu_id from twei_menu tc where tc.auth_id in
+        (select tb.auth_id from twei_role_auth tb where tb.role_id in
+        (select ta.role_id from twei_user_role ta where ta.userid = #{userid}))
+     )
+     union all
+     select b.menu_id,b.menu_parent_id from
+      tab a,
+      twei_menu b
+     where a.menu_parent_id=b.menu_id
+    )
     select distinct
         ta.menu_id as menuId,
         ta.menu_name as menuName,
@@ -42,9 +55,7 @@
         left join twei_menu tb on ta.menu_parent_id = tb.menu_id
         left join twei_auth tc on ta.auth_id = tc.auth_id
         where 1 = 1 and ta.menu_id in
-    (select tc.menu_id from twei_menu tc where tc.auth_id in
-    (select tb.auth_id from twei_role_auth tb where tb.role_id in
-    (select ta.role_id from twei_user_role ta where ta.userid = #{userid})))
+    (select distinct tab.menu_id from tab)
     Order by menuParentId asc,to_number(menuId) asc,menuOrder asc
     </select>
 </mapper>

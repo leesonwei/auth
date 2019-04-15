@@ -13,6 +13,9 @@ import java.util.List;
  */
 public class MenuUtil {
     public static List<TweiMenuVo> setActive(String id, List<TweiMenuVo> allMenu){
+        if (allMenu == null) {
+            return null;
+        }
         for (TweiMenuVo menu:allMenu) {
             if (id.equals(menu.getMenuId())) {
                 menu.setActive("active");

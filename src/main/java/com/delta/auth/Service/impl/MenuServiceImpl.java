@@ -71,6 +71,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, TweiMenu> imple
     public List<TweiAuth> getMenuAuths() {
         EntityWrapper wrapper = new EntityWrapper();
         wrapper.eq("auth_type", 1);
+        wrapper.isNotNull("auth_url");
         return authMapper.selectList(wrapper);
     }
 
